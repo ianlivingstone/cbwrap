@@ -12,7 +12,11 @@ exports.wrap = function (fn) {
           return reject(args[0]);
         }
 
-        resolve.call(null, args.slice(1));
+        if (args.length > 2) {
+          return resolve.call(null, args.slice(1));
+        }
+
+        return resolve.apply(null, args.slice(1));
       }
 
       args.push(processCb);
@@ -31,7 +35,7 @@ exports.nodeify = function (fn) {
     if (!cb || typeof cb !== 'function') {
       return fn.apply(null, args);
     }
-    
+
     args = args.slice(0, args.length - 1);
     return fn.apply(null, args).then(function() {
       var args = Array.prototype.slice.call(arguments);

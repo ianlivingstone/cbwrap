@@ -50,6 +50,15 @@ describe('cbwrap', function() {
       });
     });
 
+    it('passes single back (not array) back if only one arg', function() {
+      var fn = testGenerator([], [null, 'a']);
+      var wrappedFn = cbwrap.wrap(fn);
+
+      return wrappedFn().then((value) => {
+        assert.strictEqual(value, 'a');
+      });
+    });
+
     it('wrapper passes arguments to called fn', function () {
       var fn = testGenerator(['a','b','c'], []);
       var wrappedFn = cbwrap.wrap(fn);
