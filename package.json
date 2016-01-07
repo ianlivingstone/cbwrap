@@ -1,6 +1,6 @@
 {
   "name": "cbwrap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "small utility that wraps callbacks in native promises (es6)",
   "main": "index.js",
   "scripts": {
