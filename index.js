@@ -1,11 +1,13 @@
 'use strict';
 
+var Promise = require('es6-promise').Promise;
+
 exports.wrap = function (fn) {
   return function () {
     var self = this;
     var args = Array.prototype.slice.call(arguments);
 
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
       function processCb() {
         var args = Array.prototype.slice.call(arguments);
         if (args[0]) {
